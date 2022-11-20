@@ -118,4 +118,12 @@ app.initializers.add('tituspijean-auth-ldap', function(app) {
         default: false,
       }
     )
+    .registerSetting(
+      {
+        setting: settingsPrefix + 'group',
+        label: app.translator.trans(translationPrefix + 'group'),
+        type: 'text',
+        default: false,
+      }
+    )
 });

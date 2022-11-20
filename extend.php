@@ -2,6 +2,7 @@
 
 use Flarum\Extend;
 use Flarum\Foundation\Application;
+use Flarum\User\Event\Registered;
 use Illuminate\Events\Dispatcher;
 
 return [
@@ -11,6 +12,8 @@ return [
   (new Extend\Frontend('forum'))
     ->js(__DIR__.'/js/dist/forum.js')
     ->css(__DIR__.'/less/forum.less'),
+  (new Extend\Event())
+    ->listen(Registered::class, Listeners\AddDefaultGroup::class),
   (new Extend\Routes('forum'))
     ->post('/auth/ldap', 'auth.ldap.post', Controllers\LDAPAuthController::class)
     ->get('/auth/ldap', 'auth.ldap.get', Controllers\LDAPAuthController::class),

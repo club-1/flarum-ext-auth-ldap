@@ -21,3 +21,4 @@ tituspijean-auth-ldap:
       use_ssl: Use SSL
       use_tls: Use TLS
       onlyUse: Hide Flarum standard login method
+      group: Default group

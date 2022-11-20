@@ -11,6 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use LdapRecord\Connection;
 use LdapRecord\LdapRecordException;
 use Flarum\Forum\Auth\Registration;
+use TitusPiJean\Flarum\Auth\LDAP\Consts;
 
 class LDAPAuthController implements RequestHandlerInterface
 {
@@ -27,7 +28,7 @@ class LDAPAuthController implements RequestHandlerInterface
 
 	public function handle(Request $request): ResponseInterface
 	{
-		$settingsPrefix = 'tituspijean-auth-ldap.';
+		$settingsPrefix = Consts::SETTINGS_PREFIX;
 
 		$body = $request->getParsedBody();
 		$params = Arr::only($body, ['identification', 'password']);
@@ -72,7 +73,7 @@ class LDAPAuthController implements RequestHandlerInterface
 
 					if ($connection->auth()->attempt($user['dn'], $password, $bindAsUser = true)) {
 						return $this->response->make(
-							'ldap',
+							Consts::PROVIDER_ID,
 							$user[strtolower($userLdapUsername)][0],
 							function (Registration $registration) use ($user, $userLdapUsername, $userLdapMail) {
 								$registration
