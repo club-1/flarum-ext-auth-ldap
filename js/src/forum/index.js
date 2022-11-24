@@ -16,7 +16,7 @@ app.initializers.add('tituspijean-auth-ldap', () => {
 	extend(HeaderSecondary.prototype, 'items', removeIfOnlyUse);
 	extend(LogInModal.prototype, 'content', overrideModal);
 
-	extend(SettingsPage.prototype, 'accountItems', removeProfileActions);
+	// extend(SettingsPage.prototype, 'accountItems', removeProfileActions);
 	extend(SettingsPage.prototype, 'settingsItems', checkRemoveAccountSection);
 
 	function overrideModal() {
